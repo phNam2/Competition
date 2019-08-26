@@ -1,0 +1,426 @@
+body {
+    background: url("image/snow.gif");
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+/*    background-repeat: no-repeat;*/
+    min-width: 1070px;
+    min-height: 695px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#sidelines {
+    background-color: #514e4e;
+    height: 100%;
+    width: 300px;
+    position: absolute;        
+    min-width: 300px;
+    min-height: 695px;
+    max-height: 695px;
+}
+
+#enemy {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-style: inset;
+    border-width: 7px;
+    border-color: aqua;
+    height: 47%;
+}
+
+.ship {
+    margin-top 20px;
+    width: 280px; 
+}
+
+#shipright {
+    display: none;
+}
+
+#shipleft {
+    display: block;
+}
+
+#enemyLeft {
+    width: 230px;
+    height: 60px;
+    background-color: yellow;
+    margin: 0px auto;
+    font-family: cursive;
+    font-size: 20px;
+    line-height: 2.8;
+}
+
+#us{
+    text-align: center;
+    padding-bottom: 10px;
+    border-style: inset;
+    border-width: 7px;
+    border-color: #b213aa;
+    height: 53%;
+
+}
+
+#point {
+    width: 160px;
+    height: 60px;
+    background-color: #ce7604;
+    margin: 20px auto;
+    font-family: cursive;
+    font-size: 20px;
+    line-height: 2.8;
+    border-radius: 20px;
+}
+
+#time {
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    margin: 20px auto;
+    font-family: cursive;
+    font-size: 20px;
+    line-height: 2.5;
+    border-radius: 20px;
+    color: aliceblue;
+}
+
+#live {
+    width: 250px;
+    height: 50px;
+    margin: 40px auto;
+    background: radial-gradient(#7634bc, #360966);
+}
+
+#buttons {
+    width: 280px;
+    height: 66px;
+    margin: 40px auto 40px;
+    font-family: cursive;
+    position: relative;
+}
+
+#main {
+    width: 75px;
+    height: 40px;
+    position: absolute;
+    left: 20px;
+    line-height: 2.3;
+    border-radius: 20px;
+    background-color: #13a55f;
+    box-shadow: 0px 2px black;
+    cursor: pointer;
+}
+
+#main:hover {
+    background-color: white;
+}
+
+#main:active {
+    top: 2px;
+    box-shadow: 0px 0px black;
+}
+
+#StartReset{
+    width: 155px;
+    height: 40px;
+    position: absolute;
+    left: 120px;
+    line-height: 2.3;
+    border-radius: 20px;
+    background-color: #d31313;
+    box-shadow: 0px 2px black;
+    cursor: pointer;
+    color: white;
+}
+
+#StartReset:hover {
+    background-color: #2c62d6;
+    color: black;
+}
+
+#StartReset:active {
+    top: 2px;
+    box-shadow: 0px 0px black;
+}
+
+/*
+#sound {
+    background-color: yellow;
+    position: absolute;
+    top: 50px;
+    left: 170px;
+    box-shadow: 3px 3px black;
+    cursor: pointer;
+}
+
+#sound:active {
+    top:52px;
+    box-shadow: 0px 0px black;
+}
+*/
+
+/*------------------------------------------------*/
+#gameContent {
+/*    background-color: red;*/
+    width: 100%;
+    height: 100%;
+}
+
+#instructions {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    left: 1300px;
+    line-height: 1.5;
+    border-radius: 20px;
+    background-color: #d31313;
+    cursor: pointer;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    display: none;
+}
+
+#instructions:active {
+    top: 22px;
+}
+
+#win {
+    width: 700px;
+    height: 400px;
+    background: linear-gradient(#cd09f4, #6a107c);
+    position: absolute;
+    text-align: center;
+    font-family: cursive;
+    border-radius: 30px;
+    top: 150px;
+    left: 500px;
+    font-size: 40px;
+    line-height: 2.2;
+    color: aliceblue;
+    display: none;
+}
+
+#tankSide3 {
+    position: absolute;
+    top: 50px;
+    left:90px;
+    display:block;
+}
+
+#tankSide2 {
+    position: absolute;
+    top: 50px;
+    left:100px;
+    display:none;
+}
+
+#tankSide1 {
+    position: absolute;
+    top: 50px;
+    left:90px;
+    display:none;
+}
+
+#tankSide0 {
+    position: absolute;
+    top: 50px;
+    left:90px;
+    display:none;
+}
+
+.tankHead {
+    margin: 20px ;
+}
+
+#brickHead1{
+    position: absolute;
+    top: 250px;
+    left: 20px;
+}
+
+#brickHead2{
+    position: absolute;
+    top: 250px;
+    right: 20px;
+}
+
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.rotate180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.rotate270 {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+
+#giveUp0 {
+    width: 600px;
+    height: 300px;
+    background: linear-gradient(#054656, #0882a0);
+    position: absolute;
+    text-align: center;
+    font-family: cursive;
+    border-radius: 30px;
+    top: 150px;
+    left: 550px;
+    font-size: 40px;
+    line-height: 2;
+    color: aliceblue;
+    padding: 20px;
+    display: none;
+}
+
+#giveUp {
+    width: 600px;
+    height: 300px;
+    background: linear-gradient(#054656, #0882a0);
+    position: absolute;
+    text-align: center;
+    font-family: cursive;
+    border-radius: 30px;
+    top: 150px;
+    left: 550px;
+    font-size: 40px;
+    line-height: 2;
+    color: aliceblue;
+    padding: 20px;
+    display: none;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 6.0s;
+  animation-name: fade;
+  animation-duration: 6.0s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: 1} 
+  to {opacity: 0}
+}
+
+@keyframes fade {
+  from {opacity: 1} 
+  to {opacity: 0}
+}
+
+#lose{
+    width: 600px;
+    height: 400px;
+    background: linear-gradient(#054656, #0882a0);
+    position: absolute;
+    text-align: center;
+    font-family: cursive;
+    border-radius: 30px;
+    top: 150px;
+    left: 550px;
+    font-size: 40px;
+    line-height: 2;
+    color: aliceblue;
+    padding: 20px;
+    display: none;
+}
+
+#animation {
+    background-color: black;
+    position: absolute;
+    left: 300px;
+    width: 1065px;
+    height: 695px;
+/*    display: none;*/
+}
+
+#rock1 {
+    position:absolute;
+    top:637px;
+}
+
+#rock2 {
+    position:absolute;
+    top:637px;
+    right: 0px;
+}
+
+#wall1 {
+    position:absolute;
+    top: 590px;
+    left: 90px; 
+}
+
+#wall2 {
+    position:absolute;
+    top: 230px;
+    left: 580px; 
+}
+
+#tank{
+    position:absolute;
+    top:645px;
+    left: 90px;
+}
+
+.life{
+    width: 50px;
+    margin: 2px 5px 0px 5px;
+}
+
+.bul {
+    display: none;
+    position: absolute;
+}
+
+.asteroids {
+    display: none;
+    position: absolute;
+}
+
+#levelUp{
+    display: none;
+    position: absolute;
+}
+
+.enemyShip {
+    display: none;
+    position: absolute;
+}
+
+#press {
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    background-color: #3e49ad;
+    top: 120px;
+    left: 500px;
+    font-size: 40;
+    text-align: center;
+    line-height: 2;
+    font-family: cursive;
+    padding: 20px;
+    display: block
+}
+
