@@ -50,9 +50,10 @@ var timeout;
 var asteroid6;
 
 // Gift
-function gift(bulletType) {
+function gift(bulletType, appear) {
     this.giftID = "#levelUp";
     this.bulletNo = bulletType;
+    this.appear = appear;
 }
 var Up;
 var giftOut;
@@ -70,6 +71,10 @@ function enemyShip(enemyID, enemyID2, number) {
 var enemyLeft = [];
 
 var shipDisplay = "left";
+
+
+
+
 
 // Start the game
 document.getElementById("StartReset").onclick = function() {
@@ -150,10 +155,13 @@ document.getElementById("StartReset").onclick = function() {
             }
         }, 5000);
         
+        
+        Up = new gift(1, false);
+        
         // The first gift out
         giftOut = setTimeout(function(){
             if (playing == true) {
-                Up = new gift(2);
+                Up = new gift(2, true);
                 sendGift(Up);
             }
         }, 60000);
@@ -161,6 +169,7 @@ document.getElementById("StartReset").onclick = function() {
         timeout = setTimeout(function(){
             if (playing == true) {
                 $(Up.giftID).hide(); // Hide the gift
+                Up.appear = false;
             
                 asteroid1 = new asteroid("#as4", "as4");
                 asteroids.push(asteroid1);
@@ -171,7 +180,7 @@ document.getElementById("StartReset").onclick = function() {
         // The second gift out
         giftOut = setTimeout(function(){
             if (playing == true) {
-                Up = new gift(3);
+                Up = new gift(3, true);
                 sendGift(Up);
             }
         }, 130000);
@@ -179,6 +188,7 @@ document.getElementById("StartReset").onclick = function() {
         timeout = setTimeout(function(){
             if (playing == true) {
                 $(Up.giftID).hide(); // Hide the gift
+                Up.appear = false;
             
                 asteroid1 = new asteroid("#as5", "as5");
                 asteroids.push(asteroid1);
@@ -315,7 +325,9 @@ function movingWall1(wall){
     }, 10);
 }
 
-// The keyboard action listener
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// The keyboard action listener when moving the tank
 window.addEventListener('keydown', function (e) {
     // go to the left
     if (e.keyCode == 37 &&
@@ -324,20 +336,10 @@ window.addEventListener('keydown', function (e) {
             tankGo.tankPos -= 6;
             $(tankGo.tankID).css('left', tankGo.tankPos);
         }
-
+        
         // Check if the tank touch the gift
-        if(recthit(tankGo.tankID, Up.giftID)){
-            
-            available=true;
-            clearInterval(bulletGo.actionBullet);
-            $(bulletGo.id).hide();
-            
-            if (Up.bulletNo == 2) {
-                bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 6, 600);
-            } else {
-                bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 5, 600);
-            }
-            $(Up.giftID).hide();
+        if (Up.appear == true) {
+            checkGift();   
         }
     }
     // go to the right
@@ -349,18 +351,8 @@ window.addEventListener('keydown', function (e) {
         }
         
         // Check if the tank touch the gift
-         if(recthit(tankGo.tankID, Up.giftID)){
-             
-            available=true;
-            clearInterval(bulletGo.actionBullet);
-            $(bulletGo.id).hide();
-             
-            if (Up.bulletNo == 2) {
-                bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 6, 600);
-            } else {
-                bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 5, 600);
-            }
-            $(Up.giftID).hide();
+        if (Up.appear == true) {
+            checkGift();   
         }
     }
     
@@ -379,6 +371,48 @@ window.addEventListener('keydown', function (e) {
         $("#press").hide();
     }
 });
+
+
+
+// The touch action listener when moving the tank
+function myFunction(event) {
+    // go to the left
+    var pos = event.touches[0].clientX;
+    
+    if ( pos > 389 && pos < 1254) {
+        
+        tankGo.tankPos = pos - 300;
+        $(tankGo.tankID).css('left', tankGo.tankPos);
+    }
+        
+    // Check if the tank touch the gift
+    if (Up.appear == true) {
+        checkGift();   
+    }
+}
+
+
+
+// Check if the tank touch the gift
+function checkGift() {
+    if(recthit(tankGo.tankID, Up.giftID)){
+            
+        available=true;
+        clearInterval(bulletGo.actionBullet);
+        $(bulletGo.id).hide();
+            
+        if (Up.bulletNo == 2) {
+            bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 6, 600);
+        } else {
+            bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 5, 600);
+        }
+        $(Up.giftID).hide();
+        Up.appear = false;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // The bullet travel through the screen
 function fire() {
