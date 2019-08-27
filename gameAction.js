@@ -116,7 +116,7 @@ document.getElementById("StartReset").onclick = function() {
         startCounting();
         
         //Play music
-        $("#song")[0].play();
+//        $("#song")[0].play();
         
         // Start the content
         // The wall content
@@ -412,6 +412,26 @@ function checkGift() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+var elm1 = document.getElementById('gameContent');
+var timeout;
+var lastTap = 0;
+elm1.addEventListener('touchend', function(event) {
+    var currentTime = new Date().getTime();
+    var tapLength = currentTime - lastTap;
+    
+    if (tapLength < 500 && tapLength > 0) {
+        if (available==true && playing==true) {
+            available=false;
+            bulletGo.yAxis = 600;
+            fire();    
+        }
+    } else {
+        
+    }
+    lastTap = currentTime;
+});
 
 
 // The bullet travel through the screen
