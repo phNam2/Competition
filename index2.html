@@ -1,0 +1,183 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" href="image/logo.png">
+    
+    <link rel="stylesheet" href="gameStyling.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <title>Space Invasion 2-1</title>
+</head>
+<body>
+<!--------------------------------------------------------------------------------------------------------------->
+    <div id="sidelines">
+        <div id="enemy">
+            <img src="image/game/ship_2QgFMQ.png" alt="Italian Trulli" class="ship" id="shipleft">
+            <img src="image/game/ship_49FlFw.png" alt="Italian Trulli" class="ship" id="shipright">
+            <div id="enemyLeft">
+                <p><strong>Alien ships left:</strong> <span id="number">0</span></p>
+            </div>
+        </div>
+        <div id="us">
+<!--
+            <div id="point">
+                <p><strong>Score:</strong> <span id="score" >0</span></p>
+            </div>
+-->
+            <div id="time">
+                <p><strong>Time left:</strong> <span id="seconds">190</span></p>
+            </div>
+            <div id="live">
+                
+            </div>
+            <div id="buttons">
+                <div id="main">
+                   <a href="index1.html" style="color: black; text-decoration: none">Portfolio</a>
+                </div>
+                <div id="StartReset">
+                    <p>Start</p>
+                </div>
+                
+                <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="60px" id="tankSide3">
+                
+                <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="60px" class="rotate90" id="tankSide2">
+                
+                <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="60px" class="rotate180" id="tankSide1">
+                
+                <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="60px" class="rotate270" id="tankSide0">
+<!--
+                <div id="sound">
+                    <img src="song/on.png" alt="Italian Trulli" width="40px" id="turn">
+                </div>
+-->
+            </div>
+        </div>
+    </div>
+<!--------------------------------------------------------------------------------------------------------------->
+    
+    <div id="gameContent">
+       <div id="animation">
+            <!--The objects of the our side-->
+            <img src="image/game/rock_1KRWVS.png" alt="Italian Trulli" width="80px" id="rock1">
+            <img src="image/game/rock_1KRWVS.png" alt="Italian Trulli" width="80px" id="rock2">
+            
+            <img src="image/game/brick_9YIaLF.png" alt="Italian Trulli" width="200px" height="30px" id="wall1">
+            <img src="image/game/brick_9YIaLF.png" alt="Italian Trulli" width="400px" height="30px" id="wall2">
+            
+            <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="30px"  id="tank"  ontouchmove="myFunction(event)">
+            
+            <img src="image/game/bullet_0ifkhd.png" alt="Italian Trulli" width="10px" height="30px"  id="bullet1" class="bul">
+            <img src="image/game/fastBullet_1SDB71.png" alt="Italian Trulli" width="10px" height="30px" id="bullet2" class="bul">
+            <img src="image/game/heavyBullet_8jP5N8.png" alt="Italian Trulli" width="10px" height="30px" id="bullet3" class="bul">
+            
+            <!--The asteroids objects-->
+            <img src="image/game/meteor_4phgXu.png" alt="Italian Trulli" height="60px" id="as1" class="asteroids">
+            <img src="image/game/meteor_4phgXu.png" alt="Italian Trulli" height="60px" id="as2" class="asteroids">
+            <img src="image/game/meteor_4phgXu.png" alt="Italian Trulli" height="60px" id="as3" class="asteroids">
+            <img src="image/game/meteor_4phgXu.png" alt="Italian Trulli" height="60px" id="as4" class="asteroids">
+            <img src="image/game/meteor_4phgXu.png" alt="Italian Trulli" height="60px" id="as5" class="asteroids">
+            <img src="image/game/meteor_4phgXu.png" alt="Italian Trulli" height="450px" id="as6" class="asteroids">
+            
+            <!--The present objects-->
+            <img src="image/game/gift_7LEWgw.png" alt="Italian Trulli" height="50px" id="levelUp">
+            
+            <!--The enemy ships objects-->
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left1" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left2" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left3" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left4" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left5" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left6" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left7" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left8" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left9" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left10" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left11" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left12" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left13" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left14" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left15" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left16" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left17" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left18" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left19" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left20" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left21" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left22" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left23" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left24" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left25" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left26" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left27" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left28" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left29" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left30" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left31" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left32" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left33" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left34" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left35" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left36" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left37" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left38" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left39" class="enemyShip">
+            <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" height="50px" id="left40" class="enemyShip">
+            
+       </div>
+       
+       <div id="instructions">
+       <p>?</p>
+        </div>
+       
+       <div id="press">
+          <p>- PRESS SPACE TO SHOOT</p>
+          <p>- PRESS F11 /CTRL+ /CTRL- IF THE GAME IS NOT ON FULL SCREEN</p>
+       </div>
+       <div id="win">
+          <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="40px" class="tankHead">
+          <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="40px" class="rotate90 tankHead">
+          <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="40px" class="rotate180 tankHead">
+          <img src="image/game/tank_7bd7xn.png" alt="Italian Trulli" width="40px" class="rotate270 tankHead">
+          <img src="image/game/brick_9YIaLF.png" alt="Italian Trulli" width="110px" class="rotate270" id="brickHead1">
+          <img src="image/game/brick_9YIaLF.png" alt="Italian Trulli" width="110px" class="rotate270" id="brickHead2">
+          <p>Congratulations!! You have defended the Earth</p>
+           <p>Thanks for playing.</p>
+       </div>
+       <div id="giveUp0" >
+           <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" width="300px" id="turn">
+           <p>Well play, Human</p>
+       </div>
+       <div id="giveUp" class="fade">
+           <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" width="300px" id="turn">
+           <p>Well play, Human</p>
+       </div>
+       
+       <div id="lose">
+           <img src="image/game/ship_1QpNTm.png" alt="Italian Trulli" width="300px" id="turn">
+           <p>MUAHAHAHA!! You puny human lose.</p>
+       </div>
+    </div>
+    
+    
+    <audio id="song">
+      <source src="song/Lacrimosa.ogg" type="audio/ogg">
+      <source src="song/Lacrimosa.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="kaboom">
+      <source src="song/megumin.ogg" type="audio/ogg">
+      <source src="song/megumin.mp3" type="audio/mpeg">
+    </audio>
+       
+    <audio id="continue">
+      <source src="song/continue.ogg" type="audio/ogg">
+      <source src="song/continue.mp3" type="audio/mpeg">
+    </audio>
+        
+<!-------------------------------------------------------------------------------------------------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="gameAction.js"></script>
+</body>
+</html>
