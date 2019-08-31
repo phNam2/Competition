@@ -1,5 +1,7 @@
 var reload = false;
 var playing = false;
+var w = window.innerWidth;
+var h = window.innerHeight;
 var ships;
 var score1;
 var liveLeft;
@@ -120,14 +122,14 @@ document.getElementById("StartReset").onclick = function() {
         
         // Start the content
         // The wall content
-        wall1 = new wall("#wall1", "wall1", 90, "right", 780);
+        wall1 = new wall("#wall1", "wall1", 27*w/100, "right", 80*w/100);
         movingWall1(wall1);
         
-        wall2 = new wall("#wall2", "wall2", 580, "left", 580);
-        movingWall1(wall2);
+        wall2 = new wall("#wall2", "wall2", 70*w/100, "left", 27*w/100);
+        movingWall12(wall2);
         
         // The tank content
-        tankGo = new tank(90);
+        tankGo = new tank(27*w/100);
         
         // The bullet original content
         bulletGo = new bullet("#bullet1", 1, 3, 600);
@@ -203,6 +205,12 @@ document.getElementById("StartReset").onclick = function() {
         }
         enemyMovement();
     }
+}
+
+// Get the dimension 
+function dimension() {
+    w = window.innerWidth;
+    h = window.innerHeight;
 }
 
 // Give the heart image on the health bar
@@ -303,9 +311,11 @@ function annihilate(meteorite){
 
 // The 2 walls automatic movement
 function movingWall1(wall){
+    
     wall.actionWall = setInterval(function(){
+        dimension();
         if (wall.headTo == "right") {
-            if ( (wall.wallPos + 1) > wall.furthest) {
+            if ( (wall.wallPos + 1) > 80*w/100) {
                 wall.headTo = "left";
             } else {
                 wall.wallPos += 1.5;
@@ -314,7 +324,32 @@ function movingWall1(wall){
             }
         }
         if (wall.headTo == "left") {
-            if ( (wall.wallPos - 1) < 90) {
+            if ( (wall.wallPos - 1) < 27*w/100) {
+                wall.headTo = "right";
+            } else {
+                wall.wallPos -= 1.5;
+//                $(wall.wallID).css('left', wall.wallPos);
+                document.getElementById(wall.wallID2).style.left = wall.wallPos+"px";
+            }
+        }
+    }, 10);
+}
+
+function movingWall12(wall){
+    
+    wall.actionWall = setInterval(function(){
+        dimension();
+        if (wall.headTo == "right") {
+            if ( (wall.wallPos + 1) > 70*w/100) {
+                wall.headTo = "left";
+            } else {
+                wall.wallPos += 1.5;
+//                $(wall.wallID).css('left', wall.wallPos);
+                document.getElementById(wall.wallID2).style.left = wall.wallPos+"px";
+            }
+        }
+        if (wall.headTo == "left") {
+            if ( (wall.wallPos - 1) < 25*w/100) {
                 wall.headTo = "right";
             } else {
                 wall.wallPos -= 1.5;
@@ -329,10 +364,12 @@ function movingWall1(wall){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // The keyboard action listener when moving the tank
 window.addEventListener('keydown', function (e) {
+    
+//    dimension();
     // go to the left
     if (e.keyCode == 37 &&
         playing == true) {
-        if ( tankGo.tankPos-6 > 89) {
+        if ( tankGo.tankPos-6 > 27*w/100) {
             tankGo.tankPos -= 6;
             $(tankGo.tankID).css('left', tankGo.tankPos);
         }
@@ -345,7 +382,7 @@ window.addEventListener('keydown', function (e) {
     // go to the right
     if (e.keyCode == 39 &&
         playing == true) {
-        if ( tankGo.tankPos+6 < 954) {
+        if ( tankGo.tankPos+6 < 90*w/100) {
             tankGo.tankPos += 6;
             $(tankGo.tankID).css('left', tankGo.tankPos);
         }
@@ -379,9 +416,9 @@ function myFunction(event) {
     // go to the left
     var pos = event.touches[0].clientX;
     
-    if ( pos > 389 && pos < 1254) {
+    if ( pos > 27*w/100 && pos < 90*w/100) {
         
-        tankGo.tankPos = pos - 300;
+        tankGo.tankPos = pos;
         $(tankGo.tankID).css('left', tankGo.tankPos);
     }
         
@@ -611,8 +648,8 @@ function movingAsteroids(meteorite) {
             $(tankGo.tankID).hide(); 
             setTimeout(function(){ 
                 available=true;
-                tankGo = new tank(90);
-                $(tankGo.tankID).css('left', 90);
+                tankGo = new tank(27*w/100);
+                $(tankGo.tankID).css('left', 27*w/100);
                 $(tankGo.tankID).show(); 
             }, 2000);
              
