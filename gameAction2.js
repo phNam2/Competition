@@ -1,5 +1,7 @@
 var reload = false;
 var playing = false;
+var w = window.innerWidth;
+var h = window.innerHeight;
 var ships;
 var score1;
 var liveLeft;
@@ -50,9 +52,10 @@ var timeout;
 var asteroid6;
 
 // Gift
-function gift(bulletType) {
+function gift(bulletType, appear) {
     this.giftID = "#levelUp";
     this.bulletNo = bulletType;
+    this.appear = appear;
 }
 var Up;
 var giftOut;
@@ -70,6 +73,10 @@ function enemyShip(enemyID, enemyID2, number) {
 var enemyLeft = [];
 
 var shipDisplay = "left";
+
+
+
+
 
 // Start the game
 document.getElementById("StartReset").onclick = function() {
@@ -111,18 +118,18 @@ document.getElementById("StartReset").onclick = function() {
         startCounting();
         
         //Play music
-        $("#song")[0].play();
+//        $("#song")[0].play();
         
         // Start the content
         // The wall content
-        wall1 = new wall("#wall1", "wall1", 90, "right", 780);
+        wall1 = new wall("#wall1", "wall1", 27*w/100, "right", 80*w/100);
         movingWall1(wall1);
         
-        wall2 = new wall("#wall2", "wall2", 580, "left", 580);
-        movingWall1(wall2);
+        wall2 = new wall("#wall2", "wall2", 70*w/100, "left", 27*w/100);
+        movingWall12(wall2);
         
         // The tank content
-        tankGo = new tank(90);
+        tankGo = new tank(27*w/100);
         
         // The bullet original content
         bulletGo = new bullet("#bullet1", 1, 3, 600);
@@ -150,10 +157,13 @@ document.getElementById("StartReset").onclick = function() {
             }
         }, 5000);
         
+        
+        Up = new gift(1, false);
+        
         // The first gift out
         giftOut = setTimeout(function(){
             if (playing == true) {
-                Up = new gift(2);
+                Up = new gift(2, true);
                 sendGift(Up);
             }
         }, 60000);
@@ -161,6 +171,7 @@ document.getElementById("StartReset").onclick = function() {
         timeout = setTimeout(function(){
             if (playing == true) {
                 $(Up.giftID).hide(); // Hide the gift
+                Up.appear = false;
             
                 asteroid1 = new asteroid("#as4", "as4");
                 asteroids.push(asteroid1);
@@ -171,7 +182,7 @@ document.getElementById("StartReset").onclick = function() {
         // The second gift out
         giftOut = setTimeout(function(){
             if (playing == true) {
-                Up = new gift(3);
+                Up = new gift(3, true);
                 sendGift(Up);
             }
         }, 130000);
@@ -179,6 +190,7 @@ document.getElementById("StartReset").onclick = function() {
         timeout = setTimeout(function(){
             if (playing == true) {
                 $(Up.giftID).hide(); // Hide the gift
+                Up.appear = false;
             
                 asteroid1 = new asteroid("#as5", "as5");
                 asteroids.push(asteroid1);
@@ -193,6 +205,12 @@ document.getElementById("StartReset").onclick = function() {
         }
         enemyMovement();
     }
+}
+
+// Get the dimension 
+function dimension() {
+    w = window.innerWidth;
+    h = window.innerHeight;
 }
 
 // Give the heart image on the health bar
@@ -293,9 +311,11 @@ function annihilate(meteorite){
 
 // The 2 walls automatic movement
 function movingWall1(wall){
+    
     wall.actionWall = setInterval(function(){
+        dimension();
         if (wall.headTo == "right") {
-            if ( (wall.wallPos + 1) > wall.furthest) {
+            if ( (wall.wallPos + 1) > 80*w/100) {
                 wall.headTo = "left";
             } else {
                 wall.wallPos += 1.5;
@@ -304,7 +324,7 @@ function movingWall1(wall){
             }
         }
         if (wall.headTo == "left") {
-            if ( (wall.wallPos - 1) < 90) {
+            if ( (wall.wallPos - 1) < 27*w/100) {
                 wall.headTo = "right";
             } else {
                 wall.wallPos -= 1.5;
@@ -315,52 +335,61 @@ function movingWall1(wall){
     }, 10);
 }
 
-// The keyboard action listener
+function movingWall12(wall){
+    
+    wall.actionWall = setInterval(function(){
+        dimension();
+        if (wall.headTo == "right") {
+            if ( (wall.wallPos + 1) > 70*w/100) {
+                wall.headTo = "left";
+            } else {
+                wall.wallPos += 1.5;
+//                $(wall.wallID).css('left', wall.wallPos);
+                document.getElementById(wall.wallID2).style.left = wall.wallPos+"px";
+            }
+        }
+        if (wall.headTo == "left") {
+            if ( (wall.wallPos - 1) < 25*w/100) {
+                wall.headTo = "right";
+            } else {
+                wall.wallPos -= 1.5;
+//                $(wall.wallID).css('left', wall.wallPos);
+                document.getElementById(wall.wallID2).style.left = wall.wallPos+"px";
+            }
+        }
+    }, 10);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// The keyboard action listener when moving the tank
 window.addEventListener('keydown', function (e) {
+    
+//    dimension();
     // go to the left
     if (e.keyCode == 37 &&
         playing == true) {
-        if ( tankGo.tankPos-6 > 89) {
+        if ( tankGo.tankPos-6 > 27*w/100) {
             tankGo.tankPos -= 6;
             $(tankGo.tankID).css('left', tankGo.tankPos);
         }
-
+        
         // Check if the tank touch the gift
-        if(recthit(tankGo.tankID, Up.giftID)){
-            
-            available=true;
-            clearInterval(bulletGo.actionBullet);
-            $(bulletGo.id).hide();
-            
-            if (Up.bulletNo == 2) {
-                bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 6, 600);
-            } else {
-                bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 5, 600);
-            }
-            $(Up.giftID).hide();
+        if (Up.appear == true) {
+            checkGift();   
         }
     }
     // go to the right
     if (e.keyCode == 39 &&
         playing == true) {
-        if ( tankGo.tankPos+6 < 954) {
+        if ( tankGo.tankPos+6 < 90*w/100) {
             tankGo.tankPos += 6;
             $(tankGo.tankID).css('left', tankGo.tankPos);
         }
         
         // Check if the tank touch the gift
-         if(recthit(tankGo.tankID, Up.giftID)){
-             
-            available=true;
-            clearInterval(bulletGo.actionBullet);
-            $(bulletGo.id).hide();
-             
-            if (Up.bulletNo == 2) {
-                bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 6, 600);
-            } else {
-                bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 5, 600);
-            }
-            $(Up.giftID).hide();
+        if (Up.appear == true) {
+            checkGift();   
         }
     }
     
@@ -369,7 +398,7 @@ window.addEventListener('keydown', function (e) {
         playing == true) {
         if (available==true) {
             available=false;
-            bulletGo.yAxis = 600;
+            bulletGo.yAxis = 90*h/100;
             fire();    
         }
     }
@@ -379,6 +408,68 @@ window.addEventListener('keydown', function (e) {
         $("#press").hide();
     }
 });
+
+
+
+// The touch action listener when moving the tank
+function myFunction(event) {
+    // go to the left
+    var pos = event.touches[0].clientX;
+    
+    if ( pos > 27*w/100 && pos < 90*w/100) {
+        
+        tankGo.tankPos = pos;
+        $(tankGo.tankID).css('left', tankGo.tankPos);
+    }
+        
+    // Check if the tank touch the gift
+    if (Up.appear == true) {
+        checkGift();   
+    }
+}
+
+
+
+// Check if the tank touch the gift
+function checkGift() {
+    if(recthit(tankGo.tankID, Up.giftID)){
+            
+        available=true;
+        clearInterval(bulletGo.actionBullet);
+        $(bulletGo.id).hide();
+            
+        if (Up.bulletNo == 2) {
+            bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 6, 600);
+        } else {
+            bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 5, 600);
+        }
+        $(Up.giftID).hide();
+        Up.appear = false;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+var elm1 = document.getElementById('gameContent');
+var timeout;
+var lastTap = 0;
+elm1.addEventListener('touchend', function(event) {
+    var currentTime = new Date().getTime();
+    var tapLength = currentTime - lastTap;
+    
+    if (tapLength < 500 && tapLength > 0) {
+        if (available==true && playing==true) {
+            available=false;
+            bulletGo.yAxis = 90*h/100;
+            fire();    
+        }
+    } else {
+        
+    }
+    lastTap = currentTime;
+});
+
 
 // The bullet travel through the screen
 function fire() {
@@ -390,7 +481,8 @@ function fire() {
         $(bulletGo.id).css('top', bulletGo.yAxis);
          
         // Is the bullet hit the first wall
-        if (bulletGo.yAxis > 530) {
+        if (bulletGo.yAxis > 84*h/100 &&
+            bulletGo.yAxis < 89*h/100) {
             
             if(recthit(wall1.wallID, bulletGo.id)){
                 
@@ -557,8 +649,8 @@ function movingAsteroids(meteorite) {
             $(tankGo.tankID).hide(); 
             setTimeout(function(){ 
                 available=true;
-                tankGo = new tank(90);
-                $(tankGo.tankID).css('left', 90);
+                tankGo = new tank(27*w/100);
+                $(tankGo.tankID).css('left', 27*w/100);
                 $(tankGo.tankID).show(); 
             }, 2000);
              
