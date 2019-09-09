@@ -91,6 +91,7 @@ document.getElementById("StartReset").onclick = function() {
     else {
         reload = true;
         playing = true;
+        dimension();
         
         // Hide the F11 page
         $("#press").hide();
@@ -118,7 +119,7 @@ document.getElementById("StartReset").onclick = function() {
         startCounting();
         
         //Play music
-//        $("#song")[0].play();
+        $("#song")[0].play();
         
         // Start the content
         // The wall content
@@ -132,7 +133,7 @@ document.getElementById("StartReset").onclick = function() {
         tankGo = new tank(27*w/100);
         
         // The bullet original content
-        bulletGo = new bullet("#bullet1", 1, 3, 600);
+        bulletGo = new bullet("#bullet1", 1, 3, 90*h/100);
         
         // The asteroids original content
         var asteroid1 = new asteroid("#as1", "as1");
@@ -291,14 +292,14 @@ function gameOver() {
 // End game and the last asteroid destroy everything
 function annihilate(meteorite){
     $(meteorite.asID).show();
-    var asX = 200;
-    var asY = -350;
+    var asX = 30*w/100;
+    var asY = -50*h/100;
     $(meteorite.asID).css({'left':asX, 'top':asY});
     
      meteorite.meteAction = setInterval(function(){
         asY += 3;
         $(meteorite.asID).css('top', asY);
-        if (asY >250) {
+        if (asY > 20*h/100) {
             clearInterval(meteorite.meteAction);
             $(meteorite.asID).hide();
             $("#kaboom")[0].play();
@@ -439,9 +440,9 @@ function checkGift() {
         $(bulletGo.id).hide();
             
         if (Up.bulletNo == 2) {
-            bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 6, 600);
+            bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 6, 90*h/100);
         } else {
-            bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 5, 600);
+            bulletGo = new bullet("#bullet"+Up.bulletNo, Up.bulletNo, 5, 90*h/100);
         }
         $(Up.giftID).hide();
         Up.appear = false;
@@ -495,8 +496,8 @@ function fire() {
         }
          
         // Is the bullet hit the second wall
-        if (bulletGo.yAxis > 198 &&
-            bulletGo.yAxis < 260) {
+        if (bulletGo.yAxis > 34*h/100 &&
+            bulletGo.yAxis < 39*h/100) {
             
             if(recthit(wall2.wallID, bulletGo.id)){
                 
@@ -509,46 +510,45 @@ function fire() {
         }
          
         // Is the bullet hit the enemy
-         
-        // Last row of the enemy
-        if (bulletGo.yAxis > 30 &&
-            bulletGo.yAxis < 39) {
-            
-            for (i=0; i<10; i++) {
-                display(i);
-            }
-        }
-         
-        // Third row of the enemy
-        if (bulletGo.yAxis > 80 &&
-            bulletGo.yAxis < 89) {
-            
-            for (i=10; i<20; i++) {
-                display(i);
-            }
-        }
-         
-        // Second row of the enemy
-        if (bulletGo.yAxis > 130 &&
-            bulletGo.yAxis < 139) {
-            
-            for (i=20; i<30; i++) {
-                display(i);
-            }
-        }
-         
         // First row of enemy
-        if (bulletGo.yAxis > 180 &&
-            bulletGo.yAxis < 189) {
+        if (bulletGo.yAxis > 22.5*h/100 &&
+            bulletGo.yAxis < 29.5*h/100) {
             
             for (i=30; i<40; i++) {
                 display(i);
             }
         }
          
+        // Second row of the enemy
+        if (bulletGo.yAxis > 15*h/100 &&
+            bulletGo.yAxis < 22*h/100) {
+            
+            for (i=20; i<30; i++) {
+                display(i);
+            }
+        }
+         
+        // Third row of the enemy
+        if (bulletGo.yAxis > 7.5*h/100 &&
+            bulletGo.yAxis < 14.5*h/100) {
+            
+            for (i=10; i<20; i++) {
+                display(i);
+            }
+        }
+         
+        // Last row of the enemy
+        if (bulletGo.yAxis > 0.5*h/100 &&
+            bulletGo.yAxis < 7*h/100) {
+            
+            for (i=0; i<10; i++) {
+                display(i);
+            }
+        }
+         
 
         //Is the bullet out of bound?
-        if (bulletGo.yAxis < -40) {
+        if (bulletGo.yAxis < -7*h/100) {
             available=true;
             clearInterval(bulletGo.actionBullet);
         }
@@ -622,8 +622,9 @@ function bulletDestroyer2(i) {
 // The action for the asteroids
 function movingAsteroids(meteorite) {
     $(meteorite.asID).show();
-    var asX = Math.floor((Math.random() * 840) + 70);
-    var asY = -100;
+    var asX = Math.floor((Math.random() * 60*w/100) + 27*w/100);
+//    var asX = 70*w/100;
+    var asY = -10*h/100;
     $(meteorite.asID).css({'left':asX, 'top':asY});
     
      meteorite.meteAction = setInterval(function(){
@@ -632,7 +633,7 @@ function movingAsteroids(meteorite) {
         document.getElementById(meteorite.asID2).style.top = asY+"px";
          
         //Check if the asteroid hit the wall
-        if (asY >530) { 
+        if (asY > 75*h/100) { 
          if(recthit(wall1.wallID, meteorite.asID)){
             clearInterval(meteorite.meteAction);
             $(meteorite.asID).hide("explode", 200);
@@ -643,7 +644,7 @@ function movingAsteroids(meteorite) {
         }
          
         //Check if the asteroid hit us
-        if (asY >580) { 
+        if (asY > 85*h/100) { 
          if(recthit(tankGo.tankID, meteorite.asID)){
             available=false;
             $(tankGo.tankID).hide(); 
@@ -667,7 +668,7 @@ function movingAsteroids(meteorite) {
         }
          
         //Is the asteroid out of bound?
-        if (asY >635) {
+        if (asY > 90*h/100) {
             clearInterval(meteorite.meteAction);
             $(meteorite.asID).hide();
             movingAsteroids(meteorite);
@@ -678,62 +679,62 @@ function movingAsteroids(meteorite) {
 // The postioning for the gift
 function sendGift(gift) {
     $(gift.giftID).show();
-    var asX = Math.floor((Math.random() * 840) + 90);
-    var asY = 640;
+    var asX = Math.floor((Math.random() * 60*w/100) + 27*w/100);
+    var asY = 92*h/100;
     $(gift.giftID).css({'left':asX, 'top':asY});
 }
 
 function enemyMovement(){
     
-    var firstPos = 80;
+    var firstPos = 27*w/100;
     enemyLeft[0].position = firstPos;
     $(enemyLeft[0].EnemyID).show();
-    $(enemyLeft[0].EnemyID).css({'left':firstPos, 'top':10});
+    $(enemyLeft[0].EnemyID).css({'left':firstPos, 'top':1.5*h/100});
     movingShip(enemyLeft[0]);
     for (i = 1; i<10; i++) {
-        firstPos += 80;
+        firstPos += 5.86*w/100;
         enemyLeft[i].position = firstPos;
         $(enemyLeft[i].EnemyID).show();
-        $(enemyLeft[i].EnemyID).css({'left':firstPos, 'top':10});
+        $(enemyLeft[i].EnemyID).css({'left':firstPos, 'top':1.5*h/100});
         movingShip(enemyLeft[i]);
     }
     
-    firstPos = 160;
+    firstPos = 33*w/100;
     enemyLeft[10].position = firstPos;
     $(enemyLeft[10].EnemyID).show();
-    $(enemyLeft[10].EnemyID).css({'left':firstPos, 'top':60});
+    $(enemyLeft[10].EnemyID).css({'left':firstPos, 'top':9*h/100});
     movingShip(enemyLeft[10]);
     for (i = 11; i<20; i++) {
-        firstPos += 80;
+        firstPos += 5.86*w/100;
         enemyLeft[i].position = firstPos;
         $(enemyLeft[i].EnemyID).show();
-        $(enemyLeft[i].EnemyID).css({'left':firstPos, 'top':60});
+        $(enemyLeft[i].EnemyID).css({'left':firstPos, 'top':9*h/100});
         movingShip(enemyLeft[i]);
     }
       
-    firstPos = 80;
+    firstPos = 27*w/100;
     enemyLeft[20].position = firstPos;
     $(enemyLeft[20].EnemyID).show();
-    $(enemyLeft[20].EnemyID).css({'left':firstPos, 'top':110});
+    $(enemyLeft[20].EnemyID).css({'left':firstPos, 'top':16.5*h/100});
     movingShip(enemyLeft[20]);
     for (i = 21; i<30; i++) {
-        firstPos += 80;
+        firstPos += 5.86*w/100;
         enemyLeft[i].position = firstPos;
         $(enemyLeft[i].EnemyID).show();
-        $(enemyLeft[i].EnemyID).css({'left':firstPos, 'top':110});
+        $(enemyLeft[i].EnemyID).css({'left':firstPos, 'top':16.5*h/100});
         movingShip(enemyLeft[i]);
     }
     
-    firstPos = 160;
+    firstPos = 33*w/100;
     enemyLeft[30].position = firstPos;
     $(enemyLeft[30].EnemyID).show();
-    $(enemyLeft[30].EnemyID).css({'left':firstPos, 'top':160});
+    $(enemyLeft[30].EnemyID).css({'left':firstPos, 'top':24*h/100});
     movingShip(enemyLeft[30]);
     for (i = 31; i<40; i++) {
-        firstPos += 80;
+        firstPos += 5.86*w/100;
         enemyLeft[i].position = firstPos;
         $(enemyLeft[i].EnemyID).show();
-        $(enemyLeft[i].EnemyID).css({'left':firstPos, 'top':160});
+        $(enemyLeft[i].EnemyID).css({'left':firstPos, 'top':24*h/100});
         movingShip(enemyLeft[i]);
     }
 }
@@ -742,7 +743,7 @@ function enemyMovement(){
 function movingShip(ship){
     ship.EnemyAction = setInterval(function(){
         if (ship.currentSide == "left") {
-            if ( (ship.position + 1) > 910) {
+            if ( (ship.position + 1) > 87*w/100) {
                 ship.currentSide = "right";
             } else {
                 ship.position += 1;
@@ -751,7 +752,7 @@ function movingShip(ship){
             }
         }
         if (ship.currentSide == "right") {
-            if ( (ship.position - 1) < 80) {
+            if ( (ship.position - 1) < 27*w/100) {
                 ship.currentSide = "left";
             } else {
                 ship.position -= 1;
