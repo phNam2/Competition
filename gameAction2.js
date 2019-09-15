@@ -76,7 +76,7 @@ var shipDisplay = "left";
 
 // Set the size
 function my_code(){
-    if( w/h >= 2.7) {
+    if( w/h >= 2.) {
        document.getElementById("enemy").style.display = "none";
        document.getElementById("mainC").style.gridTemplateAreas = '"box2 box3" "box2 box3"';
     }
