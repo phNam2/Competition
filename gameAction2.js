@@ -2,6 +2,8 @@ var reload = false;
 var playing = false;
 var w = window.innerWidth;
 var h = window.innerHeight;
+var w2 = window.innerWidth;
+var h2 = window.innerHeight;
 var ships;
 var score1;
 var liveLeft;
@@ -76,9 +78,12 @@ var shipDisplay = "left";
 
 // Set the size
 function my_code(){
-    if( w/h >= 2.) {
+    if( w2/h2 >= 2.1) {
        document.getElementById("enemy").style.display = "none";
        document.getElementById("mainC").style.gridTemplateAreas = '"box2 box3" "box2 box3"';
+    } else {
+       document.getElementById("enemy").style.display = "flex";
+       document.getElementById("mainC").style.gridTemplateAreas = '"box1 box3" "box2 box3"';
     }
 }
 
@@ -96,6 +101,15 @@ document.getElementById("StartReset").onclick = function() {
         location.reload();
     }
     else {
+        
+        w2 = window.innerWidth;
+        h2 = window.innerHeight;
+        if (w != w2 || h != h2) {
+            w = w2;
+            h = h2;
+            my_code();
+        }
+        else {    
         reload = true;
         playing = true;
         dimension();
@@ -212,6 +226,7 @@ document.getElementById("StartReset").onclick = function() {
             enemyLeft.push(enemies);
         }
         enemyMovement();
+        }
     }
 }
 
