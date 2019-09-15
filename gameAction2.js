@@ -87,6 +87,20 @@ function my_code(){
     }
 }
 
+function changeEnemySizeW() {
+    for (i=1; i<6; i++) {
+        document.getElementById("as"+i).style.width = "10%";
+    }
+    document.getElementById("as6").style.width = "60%";
+}
+
+function changeEnemySizeH() {
+    for (i=1; i<6; i++) {
+        document.getElementById("as"+i).style.height = "9%";
+    }
+    document.getElementById("as6").style.height = "80%";
+}
+
 window.onload=my_code();
 
 
@@ -105,127 +119,135 @@ document.getElementById("StartReset").onclick = function() {
         w2 = window.innerWidth;
         h2 = window.innerHeight;
         if (w != w2 || h != h2) {
+            $('#StartReset').html("Done Resize");
             w = w2;
             h = h2;
             my_code();
         }
+        
         else {    
-        reload = true;
-        playing = true;
-        dimension();
-        
-        // Hide the F11 page
-        $("#press").hide();
-        
-        // Show the game content
-        $("#animation").show();
-        
-        // The number of enemy ships
-        ships = 40;
-        $("#number").html(ships);
-    
-        // Make the scoreboard appear
-        score1 = 0;
-//        $("#score").html(score1);
-        
-        $('#StartReset').html("Reset"); 
-        
-        // show the "Lives box"
-        liveLeft = 3;
-        addHearts();
-        
-        // Add the time inside the game
-        timeRemaining = 190;
-        $("#seconds").html(timeRemaining);
-        startCounting();
-        
-        //Play music
-        $("#song")[0].play();
-        
-        // Start the content
-        // The wall content
-        wall1 = new wall("#wall1", "wall1", 27*w/100, "right", 80*w/100);
-        movingWall1(wall1);
-        
-        wall2 = new wall("#wall2", "wall2", 70*w/100, "left", 27*w/100);
-        movingWall12(wall2);
-        
-        // The tank content
-        tankGo = new tank(27*w/100);
-        
-        // The bullet original content
-        bulletGo = new bullet("#bullet1", 1, 3, 90*h/100);
-        
-        // The asteroids original content
-        var asteroid1 = new asteroid("#as1", "as1");
-        asteroids.push(asteroid1);
-        movingAsteroids(asteroids[0]);
-        
-        // The second asteroid
-        timeout = setTimeout(function(){
-            if (playing == true) { // Is the game is still on
-                asteroid1 = new asteroid("#as2", "as2");
-                asteroids.push(asteroid1);
-                movingAsteroids(asteroids[1]);
+            if (w < h) {
+                changeEnemySizeW();
+            } else {
+                changeEnemySizeH();
             }
-        }, 2000);
-        
-        // The third asteroid
-        timeout = setTimeout(function(){
-            if (playing == true) {
-                asteroid1 = new asteroid("#as3", "as3");
-                asteroids.push(asteroid1);
-                movingAsteroids(asteroids[2]);
-            }
-        }, 5000);
-        
-        
-        Up = new gift(1, false);
-        
-        // The first gift out
-        giftOut = setTimeout(function(){
-            if (playing == true) {
-                Up = new gift(2, true);
-                sendGift(Up);
-            }
-        }, 60000);
-        // The fourth asteroid
-        timeout = setTimeout(function(){
-            if (playing == true) {
-                $(Up.giftID).hide(); // Hide the gift
-                Up.appear = false;
             
-                asteroid1 = new asteroid("#as4", "as4");
-                asteroids.push(asteroid1);
-                movingAsteroids(asteroids[3]);
+            reload = true;
+            playing = true;
+            dimension();
+
+            // Hide the F11 page
+            $("#press").hide();
+
+            // Show the game content
+            $("#animation").show();
+
+            // The number of enemy ships
+            ships = 40;
+            $("#number").html(ships);
+
+            // Make the scoreboard appear
+            score1 = 0;
+    //        $("#score").html(score1);
+
+            $('#StartReset').html("Reset"); 
+
+            // show the "Lives box"
+            liveLeft = 3;
+            addHearts();
+
+            // Add the time inside the game
+            timeRemaining = 190;
+            $("#seconds").html(timeRemaining);
+            startCounting();
+
+            //Play music
+            $("#song")[0].play();
+
+            // Start the content
+            // The wall content
+            wall1 = new wall("#wall1", "wall1", 27*w/100, "right", 80*w/100);
+            movingWall1(wall1);
+
+            wall2 = new wall("#wall2", "wall2", 70*w/100, "left", 27*w/100);
+            movingWall12(wall2);
+
+            // The tank content
+            tankGo = new tank(27*w/100);
+
+            // The bullet original content
+            bulletGo = new bullet("#bullet1", 1, 3, 90*h/100);
+
+            // The asteroids original content
+            var asteroid1 = new asteroid("#as1", "as1");
+            asteroids.push(asteroid1);
+            movingAsteroids(asteroids[0]);
+
+            // The second asteroid
+            timeout = setTimeout(function(){
+                if (playing == true) { // Is the game is still on
+                    asteroid1 = new asteroid("#as2", "as2");
+                    asteroids.push(asteroid1);
+                    movingAsteroids(asteroids[1]);
+                }
+            }, 2000);
+
+            // The third asteroid
+            timeout = setTimeout(function(){
+                if (playing == true) {
+                    asteroid1 = new asteroid("#as3", "as3");
+                    asteroids.push(asteroid1);
+                    movingAsteroids(asteroids[2]);
+                }
+            }, 5000);
+
+
+            Up = new gift(1, false);
+
+            // The first gift out
+            giftOut = setTimeout(function(){
+                if (playing == true) {
+                    Up = new gift(2, true);
+                    sendGift(Up);
+                }
+            }, 60000);
+            // The fourth asteroid
+            timeout = setTimeout(function(){
+                if (playing == true) {
+                    $(Up.giftID).hide(); // Hide the gift
+                    Up.appear = false;
+
+                    asteroid1 = new asteroid("#as4", "as4");
+                    asteroids.push(asteroid1);
+                    movingAsteroids(asteroids[3]);
+                }
+            }, 70000);
+
+            // The second gift out
+            giftOut = setTimeout(function(){
+                if (playing == true) {
+                    Up = new gift(3, true);
+                    sendGift(Up);
+                }
+            }, 130000);
+            // The fifth asteroid
+            timeout = setTimeout(function(){
+                if (playing == true) {
+                    $(Up.giftID).hide(); // Hide the gift
+                    Up.appear = false;
+
+                    asteroid1 = new asteroid("#as5", "as5");
+                    asteroids.push(asteroid1);
+                    movingAsteroids(asteroids[4]);
+                }
+            }, 140000);
+
+            // The enemy ship 
+            for (i=1; i<=40; i++) {
+                var enemies = new enemyShip("#left"+i, "left"+i, i);
+                enemyLeft.push(enemies);
             }
-        }, 70000);
-        
-        // The second gift out
-        giftOut = setTimeout(function(){
-            if (playing == true) {
-                Up = new gift(3, true);
-                sendGift(Up);
-            }
-        }, 130000);
-        // The fifth asteroid
-        timeout = setTimeout(function(){
-            if (playing == true) {
-                $(Up.giftID).hide(); // Hide the gift
-                Up.appear = false;
-            
-                asteroid1 = new asteroid("#as5", "as5");
-                asteroids.push(asteroid1);
-                movingAsteroids(asteroids[4]);
-            }
-        }, 140000);
-        
-        // The enemy ship 
-        for (i=1; i<=40; i++) {
-            var enemies = new enemyShip("#left"+i, "left"+i, i);
-            enemyLeft.push(enemies);
-        }
-        enemyMovement();
+            enemyMovement();
         }
     }
 }
