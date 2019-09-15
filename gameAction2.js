@@ -130,7 +130,7 @@ document.getElementById("StartReset").onclick = function() {
         }
         
         else {    
-            if (w < h) {
+            if (w/h < 1.7) {
                 changeEnemySizeW();
             } else {
                 changeEnemySizeH();
