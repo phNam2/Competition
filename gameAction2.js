@@ -88,21 +88,16 @@ function my_code(){
 }
 
 function changeEnemySizeW() {
-    for (i=1; i<6; i++) {
-        document.getElementById("as"+i).style.width = "10%";
+    if (w<h) {
+        for (i=1; i<6; i++) {
+            document.getElementById("as"+i).style.width = "10%";
+        }
+        document.getElementById("as6").style.width = "60%";
     }
-    document.getElementById("as6").style.width = "60%";
     
     for (i=1; i< 41; i++) {
         document.getElementById("left"+i).style.width = "5%";
     }
-}
-
-function changeEnemySizeH() {
-    for (i=1; i<6; i++) {
-        document.getElementById("as"+i).style.height = "9%";
-    }
-    document.getElementById("as6").style.height = "80%";
 }
 
 window.onload=my_code();
@@ -132,8 +127,6 @@ document.getElementById("StartReset").onclick = function() {
         else {    
             if (w/h < 1.7) {
                 changeEnemySizeW();
-            } else {
-                changeEnemySizeH();
             }
             
             reload = true;
