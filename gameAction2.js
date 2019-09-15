@@ -74,8 +74,15 @@ var enemyLeft = [];
 
 var shipDisplay = "left";
 
+// Set the size
+function my_code(){
+    if( w/h >= 2.7) {
+       document.getElementById("enemy").style.display = "none";
+       document.getElementById("mainC").style.gridTemplateAreas = '"box2 box3" "box2 box3"';
+    }
+}
 
-
+window.onload=my_code();
 
 
 // Start the game

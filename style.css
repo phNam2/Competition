@@ -24,9 +24,9 @@
 
 
 .ship {
-    margin-top: 5%;
+/*    margin-top: 5%;*/
     width: 100%;
-/*    height: 100%;*/
+    height: 60%;
 }
 
 #shipright {
@@ -101,6 +101,7 @@
 
 .life{
     width: 20%;
+    height: 80%;
     margin: 2px 5px 0px 5px;
 }
 
@@ -229,7 +230,7 @@
 /*****************************************************/
 /*GRID CONTENT*/
 /*****************************************************/
-main{
+#mainC{
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 4fr;
