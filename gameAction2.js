@@ -81,6 +81,8 @@ function my_code(){
     if( w2/h2 >= 2.1) {
        document.getElementById("enemy").style.display = "none";
        document.getElementById("mainC").style.gridTemplateAreas = '"box2 box3" "box2 box3"';
+       document.getElementById("time").style.fontSize = "1.5vh";
+       document.getElementById("StartReset").style.fontSize = "1.5vh";
     } else {
        document.getElementById("enemy").style.display = "flex";
        document.getElementById("mainC").style.gridTemplateAreas = '"box1 box3" "box2 box3"';
@@ -121,7 +123,7 @@ document.getElementById("StartReset").onclick = function() {
             $('#StartReset').html("Done Resize");
             w = w2;
             h = h2;
-            my_code();
+            location.reload();
         }
         
         else {    
