@@ -92,6 +92,10 @@ function changeEnemySizeW() {
         document.getElementById("as"+i).style.width = "10%";
     }
     document.getElementById("as6").style.width = "60%";
+    
+    for (i=1; i< 41; i++) {
+        document.getElementById("left"+i).style.width = "5%";
+    }
 }
 
 function changeEnemySizeH() {
