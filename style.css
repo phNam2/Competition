@@ -260,7 +260,7 @@
 
 
 #lose{
-    width: 60%;
+    width: 50%;
     height: 50%;
     background: linear-gradient(#054656, #0882a0);
     position: absolute;
@@ -268,7 +268,7 @@
     font-family: cursive;
     border-radius: 30px;
     top: 20%;
-    left: 30%;
+    left: 35%;
     font-size: 3vw;
     line-height: 2;
     color: aliceblue;
@@ -285,33 +285,39 @@
 
 
 #win {
-    width: 700px;
-    height: 400px;
+    width: 50%;
+    height: 55%;
     background: linear-gradient(#cd09f4, #6a107c);
     position: absolute;
     text-align: center;
     font-family: cursive;
     border-radius: 30px;
-    top: 150px;
-    left: 500px;
-    font-size: 40px;
-    line-height: 2.2;
+    top: 25%;
+    left: 35%;
+    line-height: 2;
+    font-size: 3vw;
     color: aliceblue;
-    display: none;
+/*    display: none;*/
+    
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 
 
 #giveUp0 {
-    width: 40%;
-    height: 40%;
+    width: 60%;
+    height: 50%;
     background: linear-gradient(#054656, #0882a0);
     position: absolute;
     text-align: center;
     font-family: cursive;
     border-radius: 30px;
     top: 20%;
-    left: 40%;
+    left: 30%;
     font-size: 3vw;
     color: aliceblue;
     padding: 20px;
@@ -324,15 +330,15 @@
 }
 
 #giveUp {
-    width: 40%;
-    height: 40%;
+    width: 60%;
+    height: 50%;
     background: linear-gradient(#054656, #0882a0);
     position: absolute;
     text-align: center;
     font-family: cursive;
     border-radius: 30px;
     top: 20%;
-    left: 40%;
+    left: 30%;
     font-size: 3vw;
     color: aliceblue;
     padding: 20px;

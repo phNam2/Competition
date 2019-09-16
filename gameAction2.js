@@ -86,16 +86,19 @@ function my_code(){
        document.getElementById("StartReset").style.fontSize = "5.5vh";
         
         document.getElementById("lose").style.fontSize = "8.5vh";
+        document.getElementById("win").style.fontSize = "6vh";
        document.getElementById("giveUp0").style.fontSize = "8.5vh";
         document.getElementById("giveUp").style.fontSize = "8.5vh";
        
-       document.getElementById("turn").style.height = "80%"; 
-        document.getElementById("turn2").style.height = "80%";
-        document.getElementById("turn3").style.height = "80%";
+//       document.getElementById("turn").style.height = "80%"; 
+//        document.getElementById("turn2").style.height = "80%";
+//        document.getElementById("turn3").style.height = "80%";
         document.getElementById("tankSide3").style.height = "45%";
         document.getElementById("tankSide2").style.height = "45%";
         document.getElementById("tankSide1").style.height = "45%";
         document.getElementById("tankSide0").style.height = "45%";
+        document.getElementById("tankHead").style.height = "50%";
+//        document.getElementById("tankHead").style.width = "10%";
         
     } else {
        document.getElementById("enemy").style.display = "flex";
@@ -350,8 +353,11 @@ function gameOver() {
             document.getElementById("giveUp").style.visibility="hidden";
 //            $("#giveUp").fadeIn();
         }, 12000);
-        setTimeout(function(){ $("#continue")[0].play() }, 15000);
-        setTimeout(function(){ $("#win").show() }, 15000);
+        setTimeout(function(){ $("#continue")[0].play(); }, 15000);
+        setTimeout(function(){ 
+//            $("#win").show(); 
+            document.getElementById("win").style.visibility="visible";
+        }, 15000);
     }
 } 
 
