@@ -84,8 +84,10 @@ function my_code(){
        document.getElementById("time").style.fontSize = "5.5vh";
        document.getElementById("question").style.fontSize = "5.5vh";
        document.getElementById("StartReset").style.fontSize = "5.5vh";
+        document.getElementById("lose").style.fontSize = "8.5vh";
        
-        document.getElementById("tankSide3").style.height = "45%";
+       
+       document.getElementById("turn").style.height = "80%"; document.getElementById("tankSide3").style.height = "45%";
         document.getElementById("tankSide2").style.height = "45%";
         document.getElementById("tankSide1").style.height = "45%";
         document.getElementById("tankSide0").style.height = "45%";
@@ -326,13 +328,16 @@ function gameOver() {
         asteroid6 = new asteroid("#as6");
         annihilate(asteroid6);
     } else if (ending=="win"){
-        $("#animation").hide();
+        $("#gameContent").hide();
         $(tankGo.tankID).hide();
         setTimeout(function(){ $("#giveUp0").show(); }, 2000);
         setTimeout(function(){ 
             $("#giveUp0").hide(); 
             $("#giveUp").show(); 
         }, 7000);
+        setTimeout(function(){ 
+            $("#giveUp").hide();
+        }, 12000);
         setTimeout(function(){ $("#continue")[0].play() }, 15000);
         setTimeout(function(){ $("#win").show() }, 15000);
     }
@@ -354,7 +359,9 @@ function annihilate(meteorite){
             $(meteorite.asID).hide();
             $("#kaboom")[0].play();
             $("#gameContent").hide();
-            $("#lose").show();
+//            $("#lose").show();
+            document.getElementById("lose").style.visibility = "visible";
+            
         }
     }, 10);
 }
