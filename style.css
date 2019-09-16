@@ -303,40 +303,69 @@
 
 
 #giveUp0 {
-    width: 600px;
-    height: 300px;
+    width: 40%;
+    height: 40%;
     background: linear-gradient(#054656, #0882a0);
     position: absolute;
     text-align: center;
     font-family: cursive;
     border-radius: 30px;
-    top: 150px;
-    left: 550px;
-    font-size: 40px;
-    line-height: 2;
+    top: 20%;
+    left: 40%;
+    font-size: 3vw;
     color: aliceblue;
     padding: 20px;
-    display: none;
+    
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #giveUp {
-    width: 600px;
-    height: 300px;
+    width: 40%;
+    height: 40%;
     background: linear-gradient(#054656, #0882a0);
     position: absolute;
     text-align: center;
     font-family: cursive;
     border-radius: 30px;
-    top: 150px;
-    left: 550px;
-    font-size: 40px;
-    line-height: 2;
+    top: 20%;
+    left: 40%;
+    font-size: 3vw;
     color: aliceblue;
     padding: 20px;
-    display: none;
+    
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-/* Fading animation */
+/* Fading animation for visibility */
+/*
+.fade {
+  animation: 6s fadeIn;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+*/
+
+
+
+/* Fading animation for display */
+/*
 .fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 6.0s;
@@ -353,6 +382,7 @@
   from {opacity: 1} 
   to {opacity: 0}
 }
+*/
 
 /*****************************************************/
 /*GRID CONTENT*/

@@ -84,10 +84,15 @@ function my_code(){
        document.getElementById("time").style.fontSize = "5.5vh";
        document.getElementById("question").style.fontSize = "5.5vh";
        document.getElementById("StartReset").style.fontSize = "5.5vh";
+        
         document.getElementById("lose").style.fontSize = "8.5vh";
+       document.getElementById("giveUp0").style.fontSize = "8.5vh";
+        document.getElementById("giveUp").style.fontSize = "8.5vh";
        
-       
-       document.getElementById("turn").style.height = "80%"; document.getElementById("tankSide3").style.height = "45%";
+       document.getElementById("turn").style.height = "80%"; 
+        document.getElementById("turn2").style.height = "80%";
+        document.getElementById("turn3").style.height = "80%";
+        document.getElementById("tankSide3").style.height = "45%";
         document.getElementById("tankSide2").style.height = "45%";
         document.getElementById("tankSide1").style.height = "45%";
         document.getElementById("tankSide0").style.height = "45%";
@@ -330,13 +335,20 @@ function gameOver() {
     } else if (ending=="win"){
         $("#gameContent").hide();
         $(tankGo.tankID).hide();
-        setTimeout(function(){ $("#giveUp0").show(); }, 2000);
         setTimeout(function(){ 
-            $("#giveUp0").hide(); 
-            $("#giveUp").show(); 
+//            $("#giveUp0").show(); 
+            document.getElementById("giveUp0").style.visibility="visible";
+        }, 2000);
+        setTimeout(function(){ 
+//            $("#giveUp0").hide(); 
+            document.getElementById("giveUp0").style.visibility="hidden";
+//            $("#giveUp").show(); 
+            document.getElementById("giveUp").style.visibility="visible";
         }, 7000);
         setTimeout(function(){ 
-            $("#giveUp").hide();
+//            $("#giveUp").hide();
+            document.getElementById("giveUp").style.visibility="hidden";
+//            $("#giveUp").fadeIn();
         }, 12000);
         setTimeout(function(){ $("#continue")[0].play() }, 15000);
         setTimeout(function(){ $("#win").show() }, 15000);
