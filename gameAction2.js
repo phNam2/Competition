@@ -81,8 +81,14 @@ function my_code(){
     if( w2/h2 >= 2.1) {
        document.getElementById("enemy").style.display = "none";
        document.getElementById("mainC").style.gridTemplateAreas = '"box2 box3" "box2 box3"';
-       document.getElementById("time").style.fontSize = "1.5vh";
-       document.getElementById("StartReset").style.fontSize = "1.5vh";
+       document.getElementById("time").style.fontSize = "5.5vh";
+       document.getElementById("StartReset").style.fontSize = "5.5vh";
+       
+        document.getElementById("tankSide3").style.height = "45%";
+        document.getElementById("tankSide2").style.height = "45%";
+        document.getElementById("tankSide1").style.height = "45%";
+        document.getElementById("tankSide0").style.height = "45%";
+        
     } else {
        document.getElementById("enemy").style.display = "flex";
        document.getElementById("mainC").style.gridTemplateAreas = '"box1 box3" "box2 box3"';
@@ -438,7 +444,7 @@ window.addEventListener('keydown', function (e) {
     }
     
     // Fire gun by pressing space
-    if (e.keyCode == 32 &&
+    if (e.keyCode == 67 &&
         playing == true) {
         if (available==true) {
             available=false;
