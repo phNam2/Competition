@@ -82,6 +82,7 @@ function my_code(){
        document.getElementById("enemy").style.display = "none";
        document.getElementById("mainC").style.gridTemplateAreas = '"box2 box3" "box2 box3"';
        document.getElementById("time").style.fontSize = "5.5vh";
+       document.getElementById("question").style.fontSize = "5.5vh";
        document.getElementById("StartReset").style.fontSize = "5.5vh";
        
         document.getElementById("tankSide3").style.height = "45%";
