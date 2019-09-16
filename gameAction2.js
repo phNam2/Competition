@@ -353,7 +353,7 @@ function annihilate(meteorite){
             clearInterval(meteorite.meteAction);
             $(meteorite.asID).hide();
             $("#kaboom")[0].play();
-            $("#animation").hide();
+            $("#gameContent").hide();
             $("#lose").show();
         }
     }, 10);

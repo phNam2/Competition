@@ -259,6 +259,22 @@
 }
 
 
+#lose{
+    width: 600px;
+    height: 400px;
+    background: linear-gradient(#054656, #0882a0);
+    position: absolute;
+    text-align: center;
+    font-family: cursive;
+    border-radius: 30px;
+    top: 150px;
+    left: 550px;
+    font-size: 40px;
+    line-height: 2;
+    color: aliceblue;
+    padding: 20px;
+    display: none;
+}
 
 /*****************************************************/
 /*GRID CONTENT*/
