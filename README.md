@@ -1,6 +1,6 @@
 #Space Invasion 2-1
 <p>The game where you can play different mode by resizing the browser.</p>
-<p><a href="https://phnam2.github.io/Competition/">Link</a></p>
+<p><a href="https://phnam2.github.io/Competition/" target="_blank">Link</a></p>
 
 <h2>Special thanks for the images:</h2>
 
