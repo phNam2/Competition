@@ -490,6 +490,10 @@ body {
 /*----------------------------------------------------------------------------------------------------------*/
 #objects {
     color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #objects h1 {
@@ -505,6 +509,7 @@ body {
     border-style: inset;
     border-width: 7px;
     border-color: #7f7979;
+/*    max-width: 900px;*/
 }
 
 #wrap2 {
@@ -516,6 +521,7 @@ body {
     border-style: inset;
     border-width: 7px;
     border-color: #7f7979;
+/*    max-width: 900px;*/
 }
 
 #Opposition{
