@@ -1,0 +1,67 @@
+
+1
+00:00:00 --> 00:00:04
+Space Invasion 2-1 is a simple game
+about you shooting alien invader.
+
+2
+00:00:05 --> 00:00:10
+The animation and controller is based 
+on making the image moving around using javascript.
+
+3
+00:00:11 --> 00:00:18
+The concept is object-oriented. Creating for each images
+and controlling them based on their current values.
+
+4
+00:00:19 --> 00:00:23
+That is what I get from HTML5 Games.
+
+5
+00:00:24 --> 00:00:28
+However, the trend of website nowaday is
+about fitting in all kind of viewport.
+
+6
+00:00:29 --> 00:00:34
+So, what if we can create different game mode
+base on the size of your browser.
+
+7
+00:00:38 --> 00:00:52
+You can play in limited-space mode.
+
+8
+00:00:55 --> 00:01:11
+Shoot-through-gap mode.
+
+9
+00:01:13 --> 00:01:25
+Or just really fast mode.
+
+10
+00:01:26 --> 00:01:31
+The smaller the viewport, the faster the game.
+
+11
+00:01:38--> 00:01:47:
+By using tools like grid, flexbox and
+situational percentage calculation, this is the result.
+
+12
+00:01:49 --> 00:01:55
+I have this idea when trying make the game
+fit in different viewports.
+
+13
+00:01:57 --> 00:02:05
+Still no mobile version though.
+
+14
+00:02:07 --> 00:02:10
+Sorry for the mismatch video sound
+
+15
+00:02:11 --> 00:02:13
+Thank you for watching.
